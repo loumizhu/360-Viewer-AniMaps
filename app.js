@@ -478,10 +478,6 @@ class AniMaps {
                 this.layersManager.reAddLayersToMap();
             }
             this.applyMapStyling();
-            if (this.layersManager) {
-                this.layersManager.reAddLayersToMap();
-            }
-            this.applyMapStyling();
             this.applyCustomStyles(); // Apply customization after style change
         });
     }
