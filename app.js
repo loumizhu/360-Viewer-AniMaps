@@ -42,16 +42,29 @@ class AniMaps {
         this.init();
     }
 
-    async init() {
-        this.bindElements();
-        this.bindEvents();
-        this.updateTotalTime();
-        this.updateRuler(); // Call this to set initial widths
-        this.initMap();
-        this.initContextMenu();
-        this.initCurveEditor();
-        this.initProjectManagement();
-        this.initVideoExport();
+    init() {
+        try {
+            console.log('[AniMaps] Starting init...');
+            this.bindElements();
+            console.log('[AniMaps] bindElements OK');
+            this.bindEvents();
+            console.log('[AniMaps] bindEvents OK');
+            this.updateTotalTime();
+            this.updateRuler();
+            console.log('[AniMaps] updateTotalTime/updateRuler OK');
+            this.initMap();
+            console.log('[AniMaps] initMap OK');
+            this.initContextMenu();
+            console.log('[AniMaps] initContextMenu OK');
+            this.initCurveEditor();
+            console.log('[AniMaps] initCurveEditor OK');
+            this.initProjectManagement();
+            console.log('[AniMaps] initProjectManagement OK');
+            this.initVideoExport();
+            console.log('[AniMaps] ✅ Init complete! All systems ready.');
+        } catch (e) {
+            console.error('[AniMaps] ❌ INIT FAILED:', e.message, e.stack);
+        }
     }
 
     bindElements() {
@@ -419,12 +432,15 @@ class AniMaps {
 
     initMap() {
         // Set RTL text plugin for proper Arabic support
-        if (maplibregl.getRTLTextPluginStatus() === 'unavailable') {
-            maplibregl.setRTLTextPlugin(
-                'https://unpkg.com/@maplibre/maplibre-gl-rtl-text@0.2.3/dist/maplibre-gl-rtl-text.js',
-                null,
-                true // Lazy load the plugin
-            );
+        try {
+            if (maplibregl.getRTLTextPluginStatus() === 'unavailable') {
+                maplibregl.setRTLTextPlugin(
+                    'https://unpkg.com/@maplibre/maplibre-gl-rtl-text@0.2.3/dist/maplibre-gl-rtl-text.js',
+                    true // Lazy load (v4 API: no callback parameter)
+                );
+            }
+        } catch (e) {
+            console.warn('[AniMaps] RTL text plugin setup skipped:', e.message);
         }
 
         // Use MapLibre GL JS with free OpenStreetMap-based tiles
@@ -926,7 +942,8 @@ class AniMaps {
 
     // ==================== KEYFRAME MANAGEMENT ====================
     addKeyframe() {
-        if (!this.map) return;
+        console.log('[AniMaps] addKeyframe() called. map:', !!this.map, 'currentTime:', this.currentTime);
+        if (!this.map) { console.warn('[AniMaps] addKeyframe aborted: map not ready'); return; }
 
         const center = this.map.getCenter();
         const keyframe = {
@@ -1399,6 +1416,7 @@ class AniMaps {
 
     // ==================== PLAYBACK ====================
     togglePlayback() {
+        console.log('[AniMaps] togglePlayback() called. isPlaying:', this.isPlaying, 'keyframes:', this.keyframes.length);
         if (this.isPlaying) {
             this.pause();
         } else {
@@ -1407,6 +1425,7 @@ class AniMaps {
     }
 
     play() {
+        console.log('[AniMaps] play() called. keyframes:', this.keyframes.length);
         if (this.keyframes.length < 2) {
             alert('Add at least 2 keyframes to play animation');
             return;
@@ -1419,6 +1438,7 @@ class AniMaps {
         this.playIcon.style.display = 'none';
         this.pauseIcon.style.display = 'block';
         
+        console.log('[AniMaps] Starting animation loop...');
         this.animate();
     }
 
