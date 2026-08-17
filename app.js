@@ -31,6 +31,7 @@ class AniMaps {
         
         // Customization State
         this.customization = {
+            labels: { customized: false },
             land: { color: null, texture: null, opacity: 0.5, blend: 'normal', textureId: null },
             water: { color: null, texture: null, opacity: 0.5, blend: 'normal', textureId: null }
         };
@@ -206,17 +207,23 @@ class AniMaps {
         if (this.showLabelsCheck) {
             this.showLabelsCheck.addEventListener('change', () => this.applyMapStyling());
         }
+        
+        const markLabelsCustomized = () => {
+            this.customization.labels.customized = true;
+            this.applyMapStyling();
+        };
+
         if (this.labelTextSizeRange) {
-            this.labelTextSizeRange.addEventListener('input', () => this.applyMapStyling());
+            this.labelTextSizeRange.addEventListener('input', markLabelsCustomized);
         }
         if (this.mapLanguageSelect) {
             this.mapLanguageSelect.addEventListener('change', () => this.applyMapStyling());
         }
         if (this.labelTextColorInput) {
-            this.labelTextColorInput.addEventListener('input', () => this.applyMapStyling());
+            this.labelTextColorInput.addEventListener('input', markLabelsCustomized);
         }
         if (this.labelHaloColorInput) {
-            this.labelHaloColorInput.addEventListener('input', () => this.applyMapStyling());
+            this.labelHaloColorInput.addEventListener('input', markLabelsCustomized);
         }
 
         // Map Customization Events
@@ -444,9 +451,10 @@ class AniMaps {
         }
 
         // Use MapLibre GL JS with free OpenStreetMap-based tiles
+        this.currentStyle = 'streets';
         this.map = new maplibregl.Map({
             container: 'map',
-            style: MAP_STYLES.dark,
+            style: MAP_STYLES.streets,
             center: [0, 20],
             zoom: 2,
             pitch: 0,
@@ -517,11 +525,13 @@ class AniMaps {
                 this.map.setLayoutProperty(layer.id, 'visibility', showLabels ? 'visible' : 'none');
                 
                 if (showLabels) {
-                    // Update text size and colors
-                    this.map.setLayoutProperty(layer.id, 'text-size', textSize);
-                    this.map.setPaintProperty(layer.id, 'text-color', textColor);
-                    this.map.setPaintProperty(layer.id, 'text-halo-color', haloColor);
-                    this.map.setPaintProperty(layer.id, 'text-halo-width', 1);
+                    if (this.customization.labels && this.customization.labels.customized) {
+                        // Update text size and colors
+                        this.map.setLayoutProperty(layer.id, 'text-size', textSize);
+                        this.map.setPaintProperty(layer.id, 'text-color', textColor);
+                        this.map.setPaintProperty(layer.id, 'text-halo-color', haloColor);
+                        this.map.setPaintProperty(layer.id, 'text-halo-width', 1);
+                    }
 
                     // Update language
                     let textField = layer.layout['text-field'];
