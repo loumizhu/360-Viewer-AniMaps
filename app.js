@@ -963,8 +963,8 @@ class AniMaps {
             bearing: this.map.getBearing(),
             pitch: this.map.getPitch(),
             easing: {
-                pan: [0, 0.84, 0.06, 0.99], // Exaggerated Ease Out
-                zoom: [0.42, 0, 0.58, 1] // Ease In Out
+                pan: [0.42, 0, 1, 1], // Ease In
+                zoom: [0, 0, 1, 1] // Linear
             }
         };
 
