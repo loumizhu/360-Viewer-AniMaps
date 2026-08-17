@@ -7,7 +7,7 @@
 // Free map style URLs from various providers
 const MAP_STYLES = {
     dark: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
-    streets: 'https://tiles.openfreemap.org/styles/liberty',
+    streets: 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json',
     bright: 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json',
     positron: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
     voyager: 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json',
