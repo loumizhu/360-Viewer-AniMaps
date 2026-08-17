@@ -137,6 +137,11 @@ class AniMaps {
         this.mapLanguageSelect = document.getElementById('mapLanguage');
         this.labelTextColorInput = document.getElementById('labelTextColor');
         this.labelHaloColorInput = document.getElementById('labelHaloColor');
+        
+        // App Theme Settings
+        this.appThemeBtn = document.getElementById('appThemeBtn');
+        this.appThemeDropdown = document.getElementById('appThemeDropdown');
+        this.appThemeSelect = document.getElementById('appThemeSelect');
 
         // Map Customization UI
         this.landColorInput = document.getElementById('landColor');
@@ -202,7 +207,32 @@ class AniMaps {
             if (this.styleSettingsDropdown && !this.styleSettingsDropdown.contains(e.target)) {
                 this.styleSettingsDropdown.classList.remove('active');
             }
+            if (this.appThemeDropdown && !this.appThemeDropdown.contains(e.target)) {
+                this.appThemeDropdown.classList.remove('active');
+            }
         });
+
+        // App Theme Events
+        if (this.appThemeBtn) {
+            this.appThemeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.appThemeDropdown.classList.toggle('active');
+                if (this.styleSettingsDropdown) this.styleSettingsDropdown.classList.remove('active');
+            });
+        }
+        
+        if (this.appThemeSelect) {
+            // Load saved theme
+            const savedTheme = localStorage.getItem('animaps_app_theme') || 'graphite';
+            this.appThemeSelect.value = savedTheme;
+            document.documentElement.setAttribute('data-theme', savedTheme);
+
+            this.appThemeSelect.addEventListener('change', (e) => {
+                const theme = e.target.value;
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('animaps_app_theme', theme);
+            });
+        }
 
         if (this.showLabelsCheck) {
             this.showLabelsCheck.addEventListener('change', () => this.applyMapStyling());

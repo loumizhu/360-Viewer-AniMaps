@@ -20,6 +20,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css?v=5">
+    
+    <script>
+        // Prevent theme flash
+        const savedTheme = localStorage.getItem('animaps_app_theme') || 'graphite';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
 </head>
 
 <body>
@@ -128,6 +134,28 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="app-theme-settings">
+                    <button class="btn btn-secondary" id="appThemeBtn" title="App Theme Settings">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2.252A8.014 8.014 0 0 1 17.748 8H22a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-4.252a8.014 8.014 0 0 1-5.748 5.748V22a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-4.252A8.014 8.014 0 0 1 2.252 12H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4.252A8.014 8.014 0 0 1 12 2.252z" />
+                            <circle cx="12" cy="12" r="3" />
+                        </svg>
+                    </button>
+                    <div class="style-settings-dropdown" id="appThemeDropdown">
+                        <div class="dropdown-header">App Theme</div>
+                        <div class="dropdown-section">
+                            <label>Workspace Theme</label>
+                            <select id="appThemeSelect">
+                                <option value="graphite">Graphite (Default)</option>
+                                <option value="midnight">Midnight</option>
+                                <option value="light">Classic Light</option>
+                                <option value="monokai">Monokai Studio</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
                 <button class="btn btn-secondary" id="exportBtn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />

@@ -1,52 +1,119 @@
 /* ===== CSS Variables / Design Tokens ===== */
 :root {
-    --bg-primary: #0a0a0f;
-    --bg-secondary: #12121a;
-    --bg-tertiary: #1a1a25;
-    --bg-elevated: #22222f;
-    --bg-hover: #2a2a3a;
-    --accent-primary: #6366f1;
-    --accent-primary-hover: #818cf8;
-    --accent-secondary: #8b5cf6;
-    --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+    /* Graphite (Default) */
+    --bg-primary: #242424;
+    --bg-secondary: #2f2f2f;
+    --bg-tertiary: #3a3a3a;
+    --bg-elevated: #454545;
+    --bg-hover: #4a4a4a;
+    --accent-primary: #3b82f6;
+    --accent-primary-hover: #60a5fa;
+    --accent-secondary: #2563eb;
+    --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%);
     --success: #22c55e;
     --warning: #f59e0b;
     --danger: #ef4444;
     --info: #3b82f6;
     --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    --border-subtle: rgba(255, 255, 255, 0.06);
-    --border-default: rgba(255, 255, 255, 0.1);
-    --border-strong: rgba(255, 255, 255, 0.15);
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-    --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
-    --glass-bg: rgba(18, 18, 26, 0.8);
-    --glass-border: rgba(255, 255, 255, 0.08);
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-default: rgba(255, 255, 255, 0.15);
+    --border-strong: rgba(255, 255, 255, 0.25);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
+    --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.3);
+    --glass-bg: rgba(36, 36, 36, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.1);
     --glass-blur: blur(12px);
+
+    /* Shared Layout & Spacing Tokens */
     --spacing-xs: 4px;
     --spacing-sm: 8px;
     --spacing-md: 16px;
     --spacing-lg: 24px;
     --spacing-xl: 32px;
-    --radius-sm: 6px;
-    --radius-md: 10px;
-    --radius-lg: 16px;
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 12px;
     --radius-full: 9999px;
-    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
     --font-size-xs: 11px;
     --font-size-sm: 12px;
-    --font-size-md: 14px;
-    --font-size-lg: 16px;
-    --font-size-xl: 20px;
-    --header-height: 56px;
-    --sidebar-width: 300px;
+    --font-size-md: 13px; /* Slightly smaller for pro tools */
+    --font-size-lg: 15px;
+    --font-size-xl: 18px;
+    --header-height: 48px; /* Tighter header */
+    --sidebar-width: 280px; /* Tighter sidebar */
     --timeline-height: 160px;
     --transition-fast: 0.15s ease;
     --transition-normal: 0.25s ease;
+}
+
+[data-theme="midnight"] {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    --bg-elevated: #475569;
+    --bg-hover: #475569;
+    --accent-primary: #6366f1;
+    --accent-primary-hover: #818cf8;
+    --accent-secondary: #8b5cf6;
+    --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --border-subtle: rgba(255, 255, 255, 0.06);
+    --border-default: rgba(255, 255, 255, 0.1);
+    --border-strong: rgba(255, 255, 255, 0.15);
+    --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+    --glass-bg: rgba(15, 23, 42, 0.85);
+}
+
+[data-theme="light"] {
+    --bg-primary: #f3f4f6;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #f9fafb;
+    --bg-elevated: #e5e7eb;
+    --bg-hover: #f3f4f6;
+    --accent-primary: #475569;
+    --accent-primary-hover: #64748b;
+    --accent-secondary: #334155;
+    --accent-gradient: linear-gradient(135deg, #475569 0%, #334155 50%, #1e293b 100%);
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --border-subtle: rgba(0, 0, 0, 0.06);
+    --border-default: rgba(0, 0, 0, 0.12);
+    --border-strong: rgba(0, 0, 0, 0.2);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
+    --shadow-glow: 0 0 20px rgba(71, 85, 105, 0.2);
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="monokai"] {
+    --bg-primary: #272822;
+    --bg-secondary: #3e3d32;
+    --bg-tertiary: #49483e;
+    --bg-elevated: #75715e;
+    --bg-hover: #49483e;
+    --accent-primary: #a6e22e;
+    --accent-primary-hover: #b6e354;
+    --accent-secondary: #fd971f;
+    --accent-gradient: linear-gradient(135deg, #a6e22e 0%, #fd971f 100%);
+    --text-primary: #f8f8f2;
+    --text-secondary: #e6db74;
+    --text-muted: #75715e;
+    --border-subtle: rgba(255, 255, 255, 0.05);
+    --border-default: rgba(255, 255, 255, 0.1);
+    --border-strong: rgba(255, 255, 255, 0.2);
+    --shadow-glow: 0 0 20px rgba(166, 226, 46, 0.3);
+    --glass-bg: rgba(39, 40, 34, 0.85);
 }
 
 *,
@@ -119,7 +186,8 @@ body {
     gap: var(--spacing-md);
 }
 
-.map-style-settings {
+.map-style-settings,
+.app-theme-settings {
     position: relative;
 }
 
